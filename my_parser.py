@@ -1,5 +1,6 @@
 import datetime
 import aiofiles
+import requests
 from aiocsv import AsyncWriter
 
 items_on_page = 30
@@ -11,8 +12,23 @@ selected_stores = {
 }
 
 
-async def get_data_from_json(local_url):
+def parse_json_card(item):
     pass
+
+
+def get_data_from_json(local_url):
+    response = requests.get(url=local_url)
+    data = response.json()
+    data_container = []
+    while data.get('next') is not None:
+        local_url = data.get('next')
+        results = data.get('results')
+        for item in results:
+            parsed_data = parse_json_card(item)
+            data_container.append(parsed_data)
+        response = requests.get(url=local_url)
+        data = response.json()
+    return data_container
 
 
 async def collect_data(shop_id):
