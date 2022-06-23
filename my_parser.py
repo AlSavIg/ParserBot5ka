@@ -1,3 +1,4 @@
+# import asyncio
 import datetime
 import aiofiles
 import requests
@@ -76,3 +77,11 @@ async def collect_data(shop_id):
         await writer.writerows(data)
 
     return f'{selected_stores[shop_id]}_{cur_time}.csv'
+
+
+# async def main():
+#     await collect_data(shop_id='5593')
+#
+#
+# if __name__ == '__main__':
+#     asyncio.run(main())
