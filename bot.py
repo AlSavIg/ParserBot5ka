@@ -1,3 +1,4 @@
+from aiofiles import os
 from aiogram import Dispatcher, Bot, types
 from aiogram.dispatcher.filters import Text
 from aiogram.utils import executor
