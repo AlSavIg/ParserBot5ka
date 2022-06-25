@@ -17,8 +17,14 @@ async def start(message: types.Message):
     await message.answer('Пожалуйста, выберите магазин', reply_markup=keyboard)
 
 
-def send_message(message, shop_id):
+def send_data(shop_id, chat_id):
     pass
+
+
+async def send_message(message, shop_id):
+    await message.answer('Ожидайте...')
+    chat_id = message.chat.id
+    await send_data(shop_id=shop_id, chat_id=chat_id)
 
 
 @dp.message_handler(Text(equals=selected_stores.get('5677')))
