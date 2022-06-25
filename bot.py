@@ -2,7 +2,7 @@ from aiogram import Dispatcher, Bot, types
 from aiogram.dispatcher.filters import Text
 from aiogram.utils import executor
 
-from ParserBot5ka.my_parser import selected_stores
+from ParserBot5ka.my_parser import selected_stores, collect_data
 
 token = "5387713157:AAHc0bfR2F8m1WzPiCfPa4_ACi0K39VCZV4"
 bot = Bot(token=token)
@@ -17,8 +17,10 @@ async def start(message: types.Message):
     await message.answer('Пожалуйста, выберите магазин', reply_markup=keyboard)
 
 
-def send_data(shop_id, chat_id):
-    pass
+async def send_data(shop_id, chat_id):
+    file = await collect_data(shop_id=shop_id)
+    await bot.send_document(chat_id=chat_id, document=open(file, 'rb'))
+    await os.remove(file)
 
 
 async def send_message(message, shop_id):
