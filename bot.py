@@ -2,8 +2,7 @@ from aiofiles import os
 from aiogram import Dispatcher, Bot, types
 from aiogram.dispatcher.filters import Text
 from aiogram.utils import executor
-
-from ParserBot5ka.my_parser import selected_stores, collect_data
+from my_parser import selected_stores, collect_data
 
 token = "5387713157:AAHc0bfR2F8m1WzPiCfPa4_ACi0K39VCZV4"
 bot = Bot(token=token)
